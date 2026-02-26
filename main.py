@@ -22,7 +22,6 @@ def chat(data: Prompt):
     intent = ask_llm(intent_prompt)
 
     if "yes" in intent.lower():
-        # simple city extraction (enough for project)
         city = user_prompt.split()[-1].replace("?", "").replace(".", "")
 
 
