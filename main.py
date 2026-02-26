@@ -13,7 +13,6 @@ class Prompt(BaseModel):
 def chat(data: Prompt):
     user_prompt = data.prompt
 
-    # 1️⃣ Ask LLM if weather is needed
     intent_prompt = (
         "Answer only yes or no.\n"
         f"Does this question need real-time weather data?\n"
@@ -22,7 +21,6 @@ def chat(data: Prompt):
 
     intent = ask_llm(intent_prompt)
 
-    # 2️⃣ If weather is needed
     if "yes" in intent.lower():
         # simple city extraction (enough for project)
         city = user_prompt.split()[-1].replace("?", "").replace(".", "")
@@ -41,7 +39,6 @@ def chat(data: Prompt):
 
         answer = ask_llm(final_prompt)
 
-    # 3️⃣ If weather not needed
     else:
         answer = ask_llm(user_prompt)
 
